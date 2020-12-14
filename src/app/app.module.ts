@@ -3,9 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CouponsComponent } from './coupons/coupons.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [AppComponent, CouponsComponent],
+  declarations: [AppComponent, CouponsComponent, NavbarComponent, FooterComponent, SidebarComponent],
   imports: [BrowserModule],
   providers: [],
   bootstrap: [AppComponent],
