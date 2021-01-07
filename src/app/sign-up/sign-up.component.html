@@ -1,0 +1,226 @@
+<div class="col-12 col-sm-9">
+  <h1 class="h1-contact">Park Finder - Sign Up</h1>
+  <div class="container-fluid p-5">
+    <div class="container mx-auto">
+      <form action="sign_up.html" method="post" id="formulario" class="ml-5">
+        <div class="row form-group">
+          <div class="col-10 col-xl-4">
+            <label for="email">E-mail</label>
+          </div>
+          <div class="col-5 col-xl-7">
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              name="email"
+              required
+            />
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-10 col-xl-4">
+            <label for="name">Name</label>
+          </div>
+          <div class="col-5 col-xl-7">
+            <input
+              type="text"
+              class="form-control"
+              id="names"
+              name="names"
+              required
+            />
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-10 col-xl-4">
+            <label for="surname">Surname</label>
+          </div>
+          <div class="col-5 col-xl-7">
+            <input
+              type="text"
+              class="form-control"
+              id="surname"
+              name="surname"
+              required
+            />
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-10 col-xl-4">
+            <label for="password1">Password</label>
+          </div>
+          <div class="col-10 col-xl-5">
+            <input
+              [(ngModel)]="pws1"
+              type="password"
+              class="form-control"
+              name="password1"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-10 col-xl-4"></div>
+            <div class="col-10 col-xl-5 pb-4" id="barra">
+              <div class="progress d-none" id="cajaBarra">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                  role="progressbar"
+                  id="progress1"
+                >
+                  Weak
+                </div>
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
+                  role="progressbar"
+                  id="progress2"
+                >
+                  Medium
+                </div>
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                  role="progressbar"
+                  id="progress3"
+                >
+                  Perfect!!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-10 col-xl-4">
+            <label for="password2">Confirm Password</label>
+          </div>
+          <div class="col-10 col-xl-5">
+            <input
+              [(ngModel)]="pws2"
+              name="password2"
+              type="password"
+              class="form-control"
+            />
+          </div>
+          <div class="col-8">
+            <p *ngIf="pws1 != pws2">Please enter the same value again.</p>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-10 col-xl-4">
+            <label for="">DNI</label>
+          </div>
+          <div class="col-10 col-xl-5">
+            <input
+              type="text"
+              class="form-control"
+              id="dni"
+              name="dni"
+              required
+            />
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-10 col-xl-4">
+            <label>Birth day</label>
+          </div>
+          <div class="col-10 col-xl-5">
+            <input
+              type="date"
+              class="form-control"
+              id="user_date"
+              name="user_date"
+              required
+            />
+          </div>
+          <div class="col-2">
+            <p id="Año"></p>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-10 col-xl-4">
+            <label for="">Car Plate</label>
+          </div>
+          <div class="col-10 col-xl-5">
+            <input
+              type="text"
+              class="form-control"
+              id="car_plate"
+              name="car_plate"
+              required
+            />
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-10 col-xl-4">
+            <label for="">Enviroment Class</label>
+          </div>
+          <div class="col-10 col-xl-5">
+            <select
+              [(ngModel)]="index"
+              name="selectClass"
+              id="selectClass"
+              class="form-control"
+              onchange="enviroment()"
+              required
+            >
+              <option value="30">-- Select one class--</option>
+              <option value="0">Eco</option>
+              <option value="1">0</option>
+              <option value="2">C</option>
+              <option value="3">B</option>
+            </select>
+          </div>
+          <div class="col-10 col-xl-2">
+            <div [ngSwitch]="index">
+              <div *ngSwitchCase="30"></div>
+              <div *ngSwitchCase="0"><p>5%</p></div>
+              <div *ngSwitchCase="1">
+                <p>10%</p>
+              </div>
+              <div *ngSwitchCase="2"><p>Dont Have Discount</p></div>
+              <div *ngSwitchCase="3">Dont Have Discount</div>
+            </div>
+            <p id="discount"></p>
+          </div>
+        </div>
+
+        <!-- FORMULARIO -->
+
+        <!-- TABLA -->
+
+        <div class="container">
+          <a href="#demo" class="btn btn-primary" data-toggle="collapse"
+            >Show Offer List</a
+          >
+          <div class="container-fluid">
+            <div id="demo" class="collapse p-1">
+              <table
+                class="table table-sm table-hover table-bordered bg-light w-25 mx-auto col-10 col-xl-5"
+              >
+                <thead>
+                  <tr>
+                    <th>Discount</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody id="contenido_tabla">
+                  <tr *ngFor="let tabla of TabList">
+                    <td>{{ tabla.des }} %</td>
+                    <td>{{ tabla.precio }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- TABLA -->
+
+          <div class="container p-5">
+            <input type="submit" class="btn btn-primary mt-5" value="Submit" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

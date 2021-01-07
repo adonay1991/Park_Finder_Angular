@@ -4,27 +4,28 @@
   <a href="./index.html" class="navbar-brand"
     ><i class="fas fa-parking fa-2x text-light"></i> <span>Park Finder</span></a
   >
-  <ul class="navbar-nav" id="list1">
-    <li class="nav-item">
-      <a href="./login.html" class="nav-link text-light d-inline">Login</a>
-      <span class="text-light">|</span>
-      <a href="./sign_up.html" class="nav-link text-light d-inline">Sign Up</a>
+  <ul class="navbar-nav">
+    <li class="nav-item" [ngClass]="{ 'd-none': log == true }">
+      <a href="#" class="nav-link text-light d-inline" (click)="changeValue()"
+        >Log in</a
+      >
     </li>
-  </ul>
-  <ul class="navbar-nav d-none" id="list2">
-    <li class="nav-item">
-      <a
-        href="./profile.html"
-        class="nav-link text-light d-inline"
-        id="link1"
-      ></a>
-      <span class="text-light">|</span>
-      <a
-        href="#!"
-        class="nav-link text-light d-inline"
-        onclick="log_out()"
-        id="link2"
-      ></a>
+
+    <li class="nav-item" [ngClass]="{ 'd-none': log == true }">
+      <a href="#" class="nav-link text-light d-inline" (click)="changeValue()"
+        >Sign Up</a
+      >
+    </li>
+    <li class="nav-item" [ngClass]="{ 'd-none': log !== true }">
+      <a href="#" class="nav-link text-light d-inline"
+        >{{ nameProfile.Name }} {{ nameProfile.Surname }}
+      </a>
+    </li>
+
+    <li class="nav-item" [ngClass]="{ 'd-none': log !== true }">
+      <a href="#!" class="nav-link text-light d-inline" (click)="changeValue()"
+        >Log out</a
+      >
     </li>
   </ul>
 </nav>

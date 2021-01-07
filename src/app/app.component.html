@@ -1,5 +1,5 @@
 <!--HEADER-->
-<app-navbar></app-navbar>
+<app-navbar (login)="logPadre = !logPadre"></app-navbar>
 <app-header></app-header>
 
 <!--END-HEADER-->
@@ -10,10 +10,14 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-4 col-md-3">
-        <app-sidebar></app-sidebar>
+        <app-sidebar [logSidebar]="logPadre"></app-sidebar>
       </div>
       <div class="col-12 col-sm-6 col-md-9">
-        <app-coupons></app-coupons>
+        <!-- <app-coupons></app-coupons> -->
+        <app-map></app-map>
+        <!-- <app-profile></app-profile> -->
+        <!-- <app-contact></app-contact> -->
+        <!-- <app-sign-up></app-sign-up> -->
       </div>
     </div>
   </div>

@@ -11,8 +11,5 @@ export class CouponsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('entrando');
-    console.log(this.coupons);
-  }
+  ngOnInit(): void {}
 }
