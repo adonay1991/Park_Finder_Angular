@@ -6,6 +6,9 @@ import * as mapboxgl from 'mapbox-gl';
   providedIn: 'root',
 })
 export class MapService {
+  /**
+   * Variables para la llamada de la api.
+   */
   mapbox = mapboxgl as typeof mapboxgl;
   map: mapboxgl.Map;
   style = `mapbox://styles/mapbox/streets-v11`;
@@ -20,6 +23,10 @@ export class MapService {
     this.mapbox.accessToken = environment.mapBoxToken;
   }
 
+  /**
+   * Metodo @get_parkings para obtener la informacion de los parking que necesitamos para la creacion de los puntos de
+   * localizacion de cada uno
+   */
   get_parkings() {
     console.log('Solicitando datos a la API');
     return new Promise((resolve, reject) => {
@@ -36,6 +43,9 @@ export class MapService {
     });
   }
 
+  /**
+   * Metodo @BuildMap para la creacion del mapa
+   */
   buildMap() {
     this.map = new mapboxgl.Map({
       container: 'map',
@@ -53,6 +63,10 @@ export class MapService {
     );
   }
 
+  /**
+   * Metodo @crearMakers para la creacion de los puntos de cada uno de los parkings recibidos mediante de la api llamada desde @get_parkings
+   * @param response recibe la informacion de la api para la posterior iteriacion para la creacion de los puntos.
+   */
   crearMarkers(response) {
     response['@graph'].forEach((item) => {
       const latitud = item.location.latitude;
@@ -67,6 +81,10 @@ export class MapService {
     });
   }
 
+  /**
+   * Metodo @load_parkings asincrono para que las llamadas a la api @get_parkings y la creacion de los markes puedan confluir en el momento
+   * oportuno para que no alla errores en los tiempos de llamada
+   */
   async load_parkings() {
     try {
       const get = await this.get_parkings();

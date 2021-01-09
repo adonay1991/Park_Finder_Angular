@@ -2,19 +2,34 @@
   <h1 class="h1-contact">Park Finder - Sign Up</h1>
   <div class="container-fluid p-5">
     <div class="container mx-auto">
-      <form action="sign_up.html" method="post" id="formulario" class="ml-5">
+      <form
+        action="sign_up.html"
+        method="post"
+        class="ml-5"
+        [formGroup]="form"
+        (ngSubmit)="save($event)"
+      >
         <div class="row form-group">
           <div class="col-10 col-xl-4">
             <label for="email">E-mail</label>
           </div>
           <div class="col-5 col-xl-7">
-            <input
-              type="text"
-              class="form-control"
-              id="email"
-              name="email"
-              required
-            />
+            <input type="text" class="form-control" formControlName="email" />
+          </div>
+
+          <div
+            class="col-5 col-xl-9"
+            [ngStyle]="{ color: colores ? 'red' : 'red' }"
+          >
+            <!-- Validacion mediante FormGroup  -->
+            <p *ngIf="form.get('email').errors && form.get('email').dirty">
+              <small *ngIf="form.get('email').hasError('email')"
+                >Please enter a correct Email</small
+              >
+              <small *ngIf="form.get('email').hasError('required')"
+                >This field is required</small
+              >
+            </p>
           </div>
         </div>
         <div class="row form-group">
@@ -22,13 +37,21 @@
             <label for="name">Name</label>
           </div>
           <div class="col-5 col-xl-7">
-            <input
-              type="text"
-              class="form-control"
-              id="names"
-              name="names"
-              required
-            />
+            <input type="text" class="form-control" formControlName="name" />
+          </div>
+          <div [ngStyle]="{ color: colores ? 'red' : 'red' }">
+            <!-- Validacion mediante FormGroup  -->
+            <p *ngIf="form.get('name').errors && form.get('name').dirty">
+              <small *ngIf="form.get('name').hasError('minlength')"
+                >It takes a minimum of 3 characters</small
+              >
+              <small *ngIf="form.get('name').hasError('maxlength')"
+                >Exceeds the character limit</small
+              >
+              <small *ngIf="form.get('name').hasError('required')"
+                >This field is required</small
+              >
+            </p>
           </div>
         </div>
         <div class="row form-group">
@@ -40,9 +63,22 @@
               type="text"
               class="form-control"
               id="surname"
-              name="surname"
-              required
+              formControlName="surname"
             />
+          </div>
+          <div [ngStyle]="{ color: colores ? 'red' : 'red' }">
+            <!-- Validacion mediante FormGroup  -->
+            <p *ngIf="form.get('surname').errors && form.get('surname').dirty">
+              <small *ngIf="form.get('surname').hasError('minlength')"
+                >It takes a minimum of 3 characters</small
+              >
+              <small *ngIf="form.get('surname').hasError('maxlength')"
+                >Exceeds the character limit</small
+              >
+              <small *ngIf="form.get('surname').hasError('required')"
+                >This field is required</small
+              >
+            </p>
           </div>
         </div>
         <div class="row form-group">
@@ -50,44 +86,14 @@
             <label for="password1">Password</label>
           </div>
           <div class="col-10 col-xl-5">
+            <!-- Ng model para los pws de los dos inputs para rellenar
+            array en el .ts para su posterior comprobacion -->
             <input
               [(ngModel)]="pws1"
+              [ngModelOptions]="{ standalone: true }"
               type="password"
               class="form-control"
-              name="password1"
-              required
             />
-          </div>
-        </div>
-
-        <div class="container">
-          <div class="row">
-            <div class="col-10 col-xl-4"></div>
-            <div class="col-10 col-xl-5 pb-4" id="barra">
-              <div class="progress d-none" id="cajaBarra">
-                <div
-                  class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
-                  role="progressbar"
-                  id="progress1"
-                >
-                  Weak
-                </div>
-                <div
-                  class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
-                  role="progressbar"
-                  id="progress2"
-                >
-                  Medium
-                </div>
-                <div
-                  class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                  role="progressbar"
-                  id="progress3"
-                >
-                  Perfect!!
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -98,12 +104,14 @@
           <div class="col-10 col-xl-5">
             <input
               [(ngModel)]="pws2"
+              [ngModelOptions]="{ standalone: true }"
               name="password2"
               type="password"
               class="form-control"
             />
           </div>
-          <div class="col-8">
+          <div class="col-8" [ngStyle]="{ color: colores ? 'red' : 'red' }">
+            <!-- Comprobacion de las pws (deben ser iguales) -->
             <p *ngIf="pws1 != pws2">Please enter the same value again.</p>
           </div>
         </div>
@@ -112,13 +120,21 @@
             <label for="">DNI</label>
           </div>
           <div class="col-10 col-xl-5">
-            <input
-              type="text"
-              class="form-control"
-              id="dni"
-              name="dni"
-              required
-            />
+            <input type="text" class="form-control" formControlName="dni" />
+          </div>
+          <div [ngStyle]="{ color: colores ? 'red' : 'red' }">
+            <!-- Validacion mediante FormGroup  -->
+            <p *ngIf="form.get('dni').errors && form.get('dni').dirty">
+              <small *ngIf="form.get('dni').hasError('minlength')"
+                >It takes a minimum of 8 characters</small
+              >
+              <small *ngIf="form.get('dni').hasError('maxlength')"
+                >Exceeds the character limit</small
+              >
+              <small *ngIf="form.get('dni').hasError('required')"
+                >This field is required</small
+              >
+            </p>
           </div>
         </div>
         <div class="row form-group">
@@ -129,11 +145,20 @@
             <input
               type="date"
               class="form-control"
-              id="user_date"
-              name="user_date"
-              required
+              formControlName="BirthDay"
             />
           </div>
+          <div [ngStyle]="{ color: colores ? 'red' : 'red' }">
+            <!-- Validacion mediante FormGroup  -->
+            <p
+              *ngIf="form.get('BirthDay').errors && form.get('BirthDay').dirty"
+            >
+              <small *ngIf="form.get('BirthDay').hasError('required')"
+                >This field is required</small
+              >
+            </p>
+          </div>
+
           <div class="col-2">
             <p id="Año"></p>
           </div>
@@ -146,10 +171,18 @@
             <input
               type="text"
               class="form-control"
-              id="car_plate"
-              name="car_plate"
-              required
+              formControlName="carPlate"
             />
+          </div>
+          <div [ngStyle]="{ color: colores ? 'red' : 'red' }">
+            <!-- Validacion mediante FormGroup  -->
+            <p
+              *ngIf="form.get('carPlate').errors && form.get('carPlate').dirty"
+            >
+              <small *ngIf="form.get('carPlate').hasError('required')"
+                >This field is required</small
+              >
+            </p>
           </div>
         </div>
         <div class="row form-group">
@@ -159,11 +192,8 @@
           <div class="col-10 col-xl-5">
             <select
               [(ngModel)]="index"
-              name="selectClass"
-              id="selectClass"
+              [ngModelOptions]="{ standalone: true }"
               class="form-control"
-              onchange="enviroment()"
-              required
             >
               <option value="30">-- Select one class--</option>
               <option value="0">Eco</option>
@@ -173,6 +203,8 @@
             </select>
           </div>
           <div class="col-10 col-xl-2">
+            <!-- NgSwitch para la seleccion de las opciones para dar un valor
+            posterior a la seleccion del usuario -->
             <div [ngSwitch]="index">
               <div *ngSwitchCase="30"></div>
               <div *ngSwitchCase="0"><p>5%</p></div>
@@ -190,14 +222,14 @@
 
         <!-- TABLA -->
 
-        <div class="container">
+        <div class="container ml-5">
           <a href="#demo" class="btn btn-primary" data-toggle="collapse"
             >Show Offer List</a
           >
           <div class="container-fluid">
             <div id="demo" class="collapse p-1">
               <table
-                class="table table-sm table-hover table-bordered bg-light w-25 mx-auto col-10 col-xl-5"
+                class="table table-sm table-hover table-bordered bg-light w-50 mx-auto"
               >
                 <thead>
                   <tr>
@@ -206,6 +238,8 @@
                   </tr>
                 </thead>
                 <tbody id="contenido_tabla">
+                  <!-- Iteracion para la construccion de la tabla 
+                    de precios + descuentos -->
                   <tr *ngFor="let tabla of TabList">
                     <td>{{ tabla.des }} %</td>
                     <td>{{ tabla.precio }}</td>
@@ -217,7 +251,12 @@
           <!-- TABLA -->
 
           <div class="container p-5">
-            <input type="submit" class="btn btn-primary mt-5" value="Submit" />
+            <input
+              type="submit"
+              [disabled]="form.invalid"
+              class="btn btn-primary mt-5"
+              value="Submit"
+            />
           </div>
         </div>
       </form>

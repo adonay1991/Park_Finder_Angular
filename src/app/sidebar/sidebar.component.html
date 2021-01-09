@@ -1,12 +1,19 @@
 <div class="p-2">
-  <a href="#!" class="btn btn-outline-primary btn-lg w-75">Home</a>
+  <a routerLink="Home" class="btn btn-outline-primary btn-lg w-75">Home</a>
 </div>
 <div class="p-2">
-  <a href="#!" class="btn btn-outline-primary btn-lg w-75">Coupons</a>
+  <a routerLink="Coupons" class="btn btn-outline-primary btn-lg w-75"
+    >Coupons</a
+  >
 </div>
 <div class="p-2">
-  <a href="#!" class="btn btn-outline-primary btn-lg w-75">Contact</a>
+  <a routerLink="Contact" class="btn btn-outline-primary btn-lg w-75"
+    >Contact</a
+  >
 </div>
+<!-- Dandole valor booleano desde el componente padre -->
 <div class="p-2" [hidden]="logSidebar == false">
-  <a href="#!" class="btn btn-outline-primary btn-lg w-75">Profile</a>
+  <a routerLink="Profile" class="btn btn-outline-primary btn-lg w-75"
+    >Profile</a
+  >
 </div>

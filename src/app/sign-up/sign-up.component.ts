@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,64 +8,87 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
   index: number = 80;
-
   TabList: any = [];
-
   pws1: string = '';
   pws2: string = '';
-  constructor() {}
+  colores: boolean = true;
+
+  form: FormGroup;
+
+  constructor(private FormBuilder: FormBuilder) {
+    this.buildForm();
+  }
 
   ngOnInit(): void {
     this.tabla();
-    this.fechas();
   }
 
-  dni(dni) {
-    const listaLetra = 'TRWAGMYFPDXBNJZSQVHLCKET';
-    const rest = dni % 23;
-    const letter = listaLetra.substr(rest, 1);
-    return letter;
+  /**
+   * Metodo @buildForm para crear grupo de fromBuilder para la validacion
+   * de los inputs en el template
+   */
+
+  buildForm() {
+    this.form = this.FormBuilder.group({
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(12),
+        ],
+      ],
+      surname: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(12),
+        ],
+      ],
+      dni: [
+        '',
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(8),
+      ],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(18),
+          Validators.minLength(8),
+        ],
+      ],
+      BirthDay: ['', [Validators.required]],
+      carPlate: ['', [Validators.required]],
+      enviroment: ['', [Validators.required]],
+    });
   }
-  password() {
-    let pws1: any = $('#password1').val();
-    const barraProgess = $('#cajaBarra');
-    const strong1 = $('#progress1');
-    const strong2 = $('#progress2');
-    const strong3 = $('#progress3');
-    barraProgess.removeClass('d-none');
 
-    if (pws1.length >= 3 && pws1.length <= 5) {
-      strong1.css('width', '33%');
-      strong2.css('width', '0%');
-      strong3.css('width', '0%');
-    }
-    if (pws1.length >= 6 && pws1.length <= 8) {
-      strong1.css('width', '0%');
-      strong2.css('width', '66%');
-      strong3.css('width', '0%');
-    }
-    if (pws1.length >= 9) {
-      strong1.css('width', '0%');
-      strong2.css('width', '0%');
-      strong3.css('width', '100%');
-    }
-
-    if (pws1.length == 0) {
-      barraProgess.addClass('d-none');
-      strong1.css('width', '0%');
-      strong2.css('width', '0%');
-      strong3.css('width', '0%');
+  save(event: Event) {
+    event.preventDefault();
+    if (this.form.valid) {
+      const value = this.form.value;
+      console.log(value);
+    } else {
+      this.form.markAllAsTouched();
     }
   }
 
-  fechas(): number {
-    let fechaUsuario = new Date();
-    let hoy = new Date();
-    let preDate = hoy.getTime() - fechaUsuario.getTime();
-    let fechas = preDate / (1000 * 3600 * 24 * 365);
+  // fechas(): number {
+  //   let fechaUsuario = new Date();
+  //   let hoy = new Date();
+  //   let preDate = hoy.getTime() - fechaUsuario.getTime();
+  //   let fechas = preDate / (1000 * 3600 * 24 * 365);
 
-    return Math.round(fechas);
-  }
+  //   return Math.round(fechas);
+  // }
+
+  /**
+   * Metodo @tabla para la construccion de la tabla de precios
+   */
 
   tabla() {
     let descuento = 0;

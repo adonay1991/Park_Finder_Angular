@@ -1,4 +1,6 @@
 <!--HEADER-->
+<!--Metodo Login para cambiar el valor booleano del navbar y pasar
+el valor a otro componente hijo   -->
 <app-navbar (login)="logPadre = !logPadre"></app-navbar>
 <app-header></app-header>
 
@@ -10,11 +12,15 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-4 col-md-3">
+        <!-- Recibiendo valor booleano del componente hermano Navbar
+        por medio del componente padre -->
         <app-sidebar [logSidebar]="logPadre"></app-sidebar>
       </div>
       <div class="col-12 col-sm-6 col-md-9">
+        <router-outlet></router-outlet>
+
         <!-- <app-coupons></app-coupons> -->
-        <app-map></app-map>
+        <!-- <app-map></app-map> -->
         <!-- <app-profile></app-profile> -->
         <!-- <app-contact></app-contact> -->
         <!-- <app-sign-up></app-sign-up> -->

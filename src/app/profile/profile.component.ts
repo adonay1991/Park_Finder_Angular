@@ -6,6 +6,9 @@ import { Component, OnInit, Output } from '@angular/core';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  /**
+   * Array para la construccion de tabla de usuario
+   */
   nameProfile: any = [
     'Name:     Adonay',
     'Surname:     Rodriguez',

@@ -5,25 +5,28 @@
     ><i class="fas fa-parking fa-2x text-light"></i> <span>Park Finder</span></a
   >
   <ul class="navbar-nav">
+    <!-- Ng class para darle una clase dependiendo de su valor booleano -->
     <li class="nav-item" [ngClass]="{ 'd-none': log == true }">
-      <a href="#" class="nav-link text-light d-inline" (click)="changeValue()"
-        >Log in</a
-      >
+      <a class="nav-link text-light d-inline" (click)="changeValue()">Log in</a>
     </li>
-
+    <!-- Ng class para darle una clase dependiendo de su valor booleano -->
     <li class="nav-item" [ngClass]="{ 'd-none': log == true }">
-      <a href="#" class="nav-link text-light d-inline" (click)="changeValue()"
+      <a
+        routerLink="Sign_Up"
+        class="nav-link text-light d-inline"
+        (click)="changeValue()"
         >Sign Up</a
       >
     </li>
+    <!-- Ng class para darle una clase dependiendo de su valor booleano -->
     <li class="nav-item" [ngClass]="{ 'd-none': log !== true }">
-      <a href="#" class="nav-link text-light d-inline"
+      <a routerLink="Profile" class="nav-link text-light d-inline"
         >{{ nameProfile.Name }} {{ nameProfile.Surname }}
       </a>
     </li>
 
     <li class="nav-item" [ngClass]="{ 'd-none': log !== true }">
-      <a href="#!" class="nav-link text-light d-inline" (click)="changeValue()"
+      <a class="nav-link text-light d-inline" (click)="changeValue()"
         >Log out</a
       >
     </li>

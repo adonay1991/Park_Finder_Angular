@@ -7,6 +7,9 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
+  /**
+   * Input que recibe valor booleano
+   */
   @Input() logSidebar: boolean = false;
 
   constructor() {}
